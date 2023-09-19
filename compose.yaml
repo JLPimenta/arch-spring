@@ -6,8 +6,10 @@ services:
     container_name: ${ENV_NAME}_postgres
     restart: unless-stopped
     environment:
+      POSTGRES_DB: ${ENV_NAME}_absentApp
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: America/Araguaina
     networks:
       - backend
     env_file:
