@@ -4,5 +4,6 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <include file="/db/changes/default/20230405-1-migracao-inicial.sql"/>
+    <include file="/db/changes/default/20230918-1-migracao-inicial.sql"/>
+    <include file="db/changes/exemplo/20230919-1-migracao-exemplo.sql"/>
 </databaseChangeLog>
