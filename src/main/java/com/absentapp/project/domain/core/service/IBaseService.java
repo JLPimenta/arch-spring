@@ -17,11 +17,9 @@ public interface IBaseService<T extends BaseEntity> {
 
     T findById(String id) throws DomainException;
 
-    List<T> findAll() throws DomainException;
-
     List<T> findAll(Sort sort) throws DomainException;
 
-    List<T> findAll(@Nullable Specification<T> specification, Sort sort) throws DomainException;
+    List<T> findAll(@Nullable Specification<T> specification, Sort sort) throws DomainException; //TODO: Implementar lógica e controlador do especification.
 
     Page<T> findAll(Pageable pageable) throws DomainException;
 
@@ -29,7 +27,7 @@ public interface IBaseService<T extends BaseEntity> {
 
     void bind(T entity, T update);
 
-    void delete(String id) throws DomainException;
+    void delete(String id);
 
     void validate(T entity) throws DomainException;
 }

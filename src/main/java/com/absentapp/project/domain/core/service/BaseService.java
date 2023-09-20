@@ -4,6 +4,7 @@ import com.absentapp.project.domain.core.entity.BaseEntity;
 import com.absentapp.project.domain.core.exception.DomainException;
 import com.absentapp.project.domain.core.repository.BaseRepository;
 import jakarta.annotation.Nullable;
+import lombok.Getter;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,8 +13,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Function;
 
+@Getter
 @Transactional(readOnly = true)
 public abstract class BaseService<T extends BaseEntity> implements IBaseService<T> {
 
@@ -23,23 +24,15 @@ public abstract class BaseService<T extends BaseEntity> implements IBaseService<
         this.repository = repository;
     }
 
-    public BaseRepository<T> getRepository() {
-        return this.repository;
-    }
-
     @Override
     public T create(T entity) throws DomainException {
+        validate(entity);
         return this.repository.save(entity);
     }
 
     @Override
     public T findById(String id) throws DomainException {
         return this.repository.findById(id).orElseThrow(() -> new DomainException("Item não encontrado."));
-    }
-
-    @Override
-    public List<T> findAll() throws DomainException {
-        return (List<T>) this.repository.findAll();
     }
 
     @Override
@@ -74,11 +67,12 @@ public abstract class BaseService<T extends BaseEntity> implements IBaseService<
     }
 
     @Override
-    public void delete(String id) throws DomainException {
+    public void delete(String id) {
         this.repository.deleteById(id);
     }
 
     @Override
     public void validate(T entity) throws DomainException {
     }
+
 }
