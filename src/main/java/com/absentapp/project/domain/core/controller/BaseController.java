@@ -36,6 +36,7 @@ public abstract class BaseController<T extends BaseEntity, R, Q> {
             @ApiResponse(responseCode = "500", description = "Erro ao realizar criação do novo registro")
     })
     public Q create(@Valid @RequestBody R entityRequest) throws DomainException {
-        return service.create(mapper.fromRequest(entityRequest), mapper::toResponse);
+        return mapper.toResponse(service.create(mapper.fromRequest(entityRequest)));
     }
+
 }

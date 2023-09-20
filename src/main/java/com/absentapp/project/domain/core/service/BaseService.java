@@ -33,11 +33,6 @@ public abstract class BaseService<T extends BaseEntity> implements IBaseService<
     }
 
     @Override
-    public <U> U create(T entity, Function<T, ? extends U> converter) throws DomainException {
-        return converter.apply(create(entity));
-    }
-
-    @Override
     public T findById(String id) throws DomainException {
         return this.repository.findById(id).orElseThrow(() -> new DomainException("Item não encontrado."));
     }
@@ -54,7 +49,7 @@ public abstract class BaseService<T extends BaseEntity> implements IBaseService<
 
     @Override
     public List<T> findAll(@Nullable Specification<T> specification, Sort sort) throws DomainException {
-        return null;
+        return this.repository.findAll(specification, sort);
 
         //TODO: Implementar Specification
     }

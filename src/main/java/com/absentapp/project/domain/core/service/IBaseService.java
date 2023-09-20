@@ -15,8 +15,6 @@ import java.util.function.Function;
 public interface IBaseService<T extends BaseEntity> {
     T create(T entity) throws DomainException;
 
-    <U> U create(T entity, Function<T, ? extends U> converter) throws DomainException;
-
     T findById(String id) throws DomainException;
 
     List<T> findAll() throws DomainException;
