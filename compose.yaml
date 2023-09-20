@@ -1,10 +1,10 @@
-version: '3.5'
+version: '3.8'
 
 services:
   postgres:
     image: postgres:${POSTGRES_RELEASE}
-    container_name: ${ENV_NAME}_postgres
-    restart: unless-stopped
+    container_name: ${ENV_NAME}_absentApp
+    restart: always
     environment:
       POSTGRES_DB: ${ENV_NAME}_absentApp
       POSTGRES_USER: ${POSTGRES_USER}
@@ -12,8 +12,8 @@ services:
       TZ: America/Araguaina
     networks:
       - backend
-    env_file:
-      - .env
+    volumes:
+      - db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
@@ -22,3 +22,7 @@ networks:
     name: ${ENV_NAME}_frontend
   backend:
     name: ${ENV_NAME}_backend
+
+volumes:
+  db:
+    driver: local
