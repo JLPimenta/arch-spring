@@ -1,7 +1,6 @@
 package com.absentapp.project.domain.model.exemplo;
 
 
-import jakarta.validation.constraints.Max;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
