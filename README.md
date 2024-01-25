@@ -1,13 +1,19 @@
-# arch-absentApp-back
+# arch-spring
 ----
-Arquitetura básica para o projeto AbsentApp (rascunho inicial, a ser transferido para o projeto principal)
+Arquitetura básica para projetos
 
+## Executando o projeto
+`Localhost` <br>
+- Baixe ou realize o clone do projeto,
+- Copie e cole o `.env.example` na pasta raiz do projeto, retirando o `.example` implementando as devidas conexões e afins,
+- No terminal, escreva o comando ``docker compose up -d`` para subir o banco de dados (Container),
+- Execute o projeto utilizando o comando `./mvnw spring-boot:run` ou execute o AppApplication
 
 ## Estrutura
 O projeto do backend é estruturado utilizando o Maven e possui dois módulos separando a camada de entidades, repositórios e serviços da camada web. Respectivamente, os modulos são domain e api.
 
 ### Desenho da arquitetura
-![image](https://github.com/absent-project/back-end/assets/85958572/1586c5fc-5808-4a7f-a7cb-0ab1bdd52e30)
+![image](https://github.com/JLPimenta/arch-spring/assets/85958572/46b73f05-054f-4c3b-95da-d91e83ab1706)
 - **Application Layer**: Controllers, o que recebe o dado (R) provindo do front-end.
 - **Domain Layer**: Serviços, Repositórios e Entidades, onde o dado é tratado para um formato (T) onde será possível trabalhá-lo e aplicar a regra de negócio. No fim do processo, será devolvido um dado de resposta (Q).
 - **Infrastracture Layer**: Base de dados, liquibase, e conexões a base de dados. Basicamente, tudo que o sistema precisa para funcionar.
@@ -16,7 +22,7 @@ O projeto do backend é estruturado utilizando o Maven e possui dois módulos se
 
 #### Domain
 O módulo Domain contém a estrutura abaixo: </br>
-![image](https://github.com/absent-project/back-end/assets/85958572/d94c0efd-26f3-4bc7-8a97-bfcc92759e23)
+![image](https://github.com/JLPimenta/arch-spring/assets/85958572/00787c98-55cc-4dd5-b41b-c9d06b87bcb2)
 
 Segue tabela de descrição de cada pacote na camada de domínio:
 |   Pacote   |                                                        Descrição                                                            |
@@ -28,9 +34,17 @@ Segue tabela de descrição de cada pacote na camada de domínio:
 | service    | Pacote onde são armazenados as classes de serviços                                                                          |
 
 #### API
-- Existe o pacote Api com os controllers da aplicação, contendo futuramente itens relacionados ao Spring Security _(Não implementado ainda!)_.
+- O pacote API contém a estrutura abaixo: </br>
+![image](https://github.com/JLPimenta/arch-spring/assets/85958572/dcac84ac-4bd8-40a7-8256-16464c2f17ae)
+
+Segue tabela de decrição de cada pacote na camada de API:
+|   Pacote   |                                                        Descrição                                                                               |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| config     | Pacote com classes de configurações inerentes à arquitetura, como handler de excessões, Spring Security (não implementado) e Swagger Doc.      |
+| controller | Pacote que contém os controladores (endpoints) da aplicação.                                                                                   |
 
 ### Links Importantes  
-- Swagger (Documentação): http://localhost:8080/swagger-ui/index.html#/
-     - Necessário que a aplicação esteja rodando!
-- Variáveis de ambiente (dotenv): [Variáveis](https://dontpad.com/dontenv-content)
+- Documentação (Swagger 3.0):
+     - http://localhost:8080
+          - Ambiente local (dev)
+          - ⚠️ Necessário que a aplicação esteja rodando!
