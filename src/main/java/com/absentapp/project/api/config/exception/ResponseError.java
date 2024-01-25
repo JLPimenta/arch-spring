@@ -5,9 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,6 +21,7 @@ public class ResponseError {
     private LocalDateTime timestamp;
     private String message;
     private String debugMessage;
+    private List<?> errors;
     private String stacktrace;
 
     public static ResponseError notMappedException(Exception ex) {
@@ -37,10 +40,11 @@ public class ResponseError {
                 .build();
     }
 
-    public static ResponseError badRequest(Exception exception) {
+    public static ResponseError badRequest(MethodArgumentNotValidException exception) {
         return ResponseError.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .message(exception.getMessage())
+                .errors(exception.getFieldErrors().stream().map(FieldDataValidation::new).toList())
                 .build();
     }
 
