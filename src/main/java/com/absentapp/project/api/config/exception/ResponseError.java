@@ -1,4 +1,4 @@
-package com.absentapp.project.api.config.exception.handler;
+package com.absentapp.project.api.config.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;

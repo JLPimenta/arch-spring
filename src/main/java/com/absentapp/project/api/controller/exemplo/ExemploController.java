@@ -7,10 +7,12 @@ import com.absentapp.project.domain.model.exemplo.ExemploResponse;
 import com.absentapp.project.domain.model.exemplo.IExemploMapper;
 import com.absentapp.project.domain.service.exemplo.IExemploService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/exemplo", produces = {"application/json"})
 @Tag(name = "Exemplo", description = "Controlador de Exemplo.")
 public class ExemploController extends BaseController<Exemplo, ExemploRequest, ExemploResponse> {
